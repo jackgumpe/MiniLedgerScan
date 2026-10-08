@@ -1,0 +1,49 @@
+## .NET / Visual Studio
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+## Rider / VS Code
+.idea/
+.vs/
+*.swp
+*~
+
+## Test / coverage
+[Tt]est[Rr]esult*/
+*.VisualState.xml
+TestResult.xml
+coverage*.json
+coverage*.xml
+*.coverage
+
+## NuGet
+*.nupkg
+*.snupkg
+packages/
+!packages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## OS / secrets
+.DS_Store
+Thumbs.db
+*.local.json
+secrets.json
+.env

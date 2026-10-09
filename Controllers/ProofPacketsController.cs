@@ -49,7 +49,9 @@ public sealed class ProofPacketsController(ProofPacketService proofPacketService
     }
 
     [HttpPost]
-    public async Task<ActionResult<ProofPacketResponse>> Create(
+    [ProducesResponseType(typeof(ProofPacketResponse), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public ActionResult<ProofPacketResponse> Create(
         [FromBody] CreateProofPacketRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.ArtifactName))
@@ -57,19 +59,44 @@ public sealed class ProofPacketsController(ProofPacketService proofPacketService
             return BadRequest("ArtifactName cannot be blank.");
         }
 
-        var result = _proofPacketService.Create(request.ArtifactName);
+        var packet = _proofPacketService.Create(request.ArtifactName);
 
         var response = new ProofPacketResponse{
-            Id = result.Id,
-            ArtifactName = result.ArtifactName,
-            Status = result.Status.ToString()
+            Id = packet.Id,
+            ArtifactName = packet.ArtifactName,
+            Status = packet.Status.ToString()
+        };
+
+        return CreatedAtAction(
+            nameof(GetById),
+            new { id = packet.Id},
+            response
+        );
+
+    }
+
+    [HttpGet("{id:guid}")]
+    [ProducesResponseType(typeof(ProofPacketResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public ActionResult<ProofPacketResponse> GetById(Guid id)
+    {
+        var packet = _proofPacketService.GetById(id);
+
+        if (packet is null)
+        {
+            return NotFound();
+        }
+
+        var response = new ProofPacketResponse
+        {
+            Id = packet.Id,
+            ArtifactName = packet.ArtifactName,
+            Status = packet.Status.ToString()
         };
 
         return Ok(response);
 
-
     }
-    
     
     
 }

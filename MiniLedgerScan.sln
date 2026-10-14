@@ -1,0 +1,42 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "product", "product", "{BD78679A-2E46-0E88-477E-F8F01F3AD4BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A7EBB717-A758-B370-225E-D17451B6930E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniLedgerScan.Api.Tests", "product\tests\MiniLedgerScan.Api.Tests\MiniLedgerScan.Api.Tests.csproj", "{120524B0-1278-822F-CAAB-AD3FB52A7B82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E68A7F8D-367E-2F88-43FC-70366B58FA22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniLedgerScan.Api", "product\src\MiniLedgerScan.Api\MiniLedgerScan.Api.csproj", "{E2C041C5-AEF0-2F1D-8FC3-E206ACB6F6AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{120524B0-1278-822F-CAAB-AD3FB52A7B82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{120524B0-1278-822F-CAAB-AD3FB52A7B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{120524B0-1278-822F-CAAB-AD3FB52A7B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{120524B0-1278-822F-CAAB-AD3FB52A7B82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2C041C5-AEF0-2F1D-8FC3-E206ACB6F6AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2C041C5-AEF0-2F1D-8FC3-E206ACB6F6AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2C041C5-AEF0-2F1D-8FC3-E206ACB6F6AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2C041C5-AEF0-2F1D-8FC3-E206ACB6F6AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A7EBB717-A758-B370-225E-D17451B6930E} = {BD78679A-2E46-0E88-477E-F8F01F3AD4BC}
+		{120524B0-1278-822F-CAAB-AD3FB52A7B82} = {A7EBB717-A758-B370-225E-D17451B6930E}
+		{E68A7F8D-367E-2F88-43FC-70366B58FA22} = {BD78679A-2E46-0E88-477E-F8F01F3AD4BC}
+		{E2C041C5-AEF0-2F1D-8FC3-E206ACB6F6AB} = {E68A7F8D-367E-2F88-43FC-70366B58FA22}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC0E7417-8F44-4F00-A579-09D73CBD40B9}
+	EndGlobalSection
+EndGlobal

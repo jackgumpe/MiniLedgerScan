@@ -12,7 +12,7 @@ public sealed class ProofPacketReview
 
     public ProofPacketStatus Status {get; private set;}
 
-    public IReadOnlyList<ProofPacketStatusChanged> History => _history;
+    public IReadOnlyList<ProofPacketStatusChanged> History => _history; 
     public IReadOnlyList<ProofPacketTransitionAttempt> FailedAttempts => _failedAttempts;
 
     public ProofPacketReview(string artifactName)

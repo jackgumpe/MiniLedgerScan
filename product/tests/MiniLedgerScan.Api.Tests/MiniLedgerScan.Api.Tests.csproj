@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="/home/jackgumpel/Documents/LedgerScanStudies/MiniLedgerScan/product/src/MiniLedgerScan.Api/MiniLedgerScan.Api.csproj" />
+    <ProjectReference Include="../../src/MiniLedgerScan.Api/MiniLedgerScan.Api.csproj" />
   </ItemGroup>
 
 </Project>

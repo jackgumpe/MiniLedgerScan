@@ -4,6 +4,7 @@ public enum ProofPacketStatus
 {
     Received,
     Validating,
+    Cancelled,
     Verified,
     Rejected
 }

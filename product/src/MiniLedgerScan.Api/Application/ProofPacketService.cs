@@ -44,20 +44,34 @@ public sealed class ProofPacketService(IOcrProvider ocrProvider, IProofPacketSto
 
         packet.StartValidation();
 
-        var result = await _ocrProvider.ProcessAsync(
+     
+        try
+        {
+            var result = await _ocrProvider.ProcessAsync(
             request,
             cancellationToken);
 
-        if (String.IsNullOrWhiteSpace(result.Text))
-        {
-            packet.Reject("OCR text was empty.");
+            if (string.IsNullOrWhiteSpace(result.Text))
+            {
+                packet.Reject("OCR text was empty.");
+            }
+            else
+            {
+                packet.Verify("OCR text passed validation.");
+            }
+
+            
+            return result;
+
         }
-        else
+        catch (OperationCanceledException)
         {
-            packet.Verify("OCR text had begun validating");
+            packet.Cancel("Operation has been interrupted.");
+            throw;
         }
 
-        return result;
+        
+
         
     }
 

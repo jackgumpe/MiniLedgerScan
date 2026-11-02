@@ -19,8 +19,6 @@ public sealed class MockBaiduOcrProvider(IOptions<MockOcrOptions> options) : IOc
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        Console.WriteLine("Mock Test");
-
         await Task.Delay(_options.DelayMilliseconds, cancellationToken);
 
         string text = _options.ReturnEmptyText ? string.Empty : $"Mock ocr text for '{request.ArtifactName}'.";

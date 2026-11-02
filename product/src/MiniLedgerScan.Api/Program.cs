@@ -30,6 +30,7 @@ builder.Services.AddSingleton<IProofPacketStore,InMemoryProofPacketStore>();
 
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<OcrProviderUnavailableExceptionHandler>();
+builder.Services.AddExceptionHandler<OperationCanceledExceptionHandler>();
     
 var app = builder.Build();
 

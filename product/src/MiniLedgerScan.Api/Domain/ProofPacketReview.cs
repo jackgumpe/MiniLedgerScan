@@ -44,6 +44,11 @@ public sealed class ProofPacketReview
         ArgumentException.ThrowIfNullOrWhiteSpace(reason); // (See changes* (1))
         TransitionTo(ProofPacketStatus.Rejected, reason);
     }
+    public void Cancel(string reason)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(reason);
+        TransitionTo(ProofPacketStatus.Cancelled, reason);
+    }
 
     private void TransitionTo(ProofPacketStatus nextStatus, string reason)
     {
@@ -79,6 +84,7 @@ public sealed class ProofPacketReview
             (ProofPacketStatus.Received, ProofPacketStatus.Validating) => true,
             (ProofPacketStatus.Validating, ProofPacketStatus.Verified) => true,
             (ProofPacketStatus.Validating, ProofPacketStatus.Rejected) => true,
+            (ProofPacketStatus.Validating, ProofPacketStatus.Cancelled) => true,
 
             _ => false
 

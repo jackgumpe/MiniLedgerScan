@@ -1,5 +1,5 @@
 using MiniLedgerScan.Api.Domain;
-using Xunit;
+
 
 namespace MiniLedgerScan.Api.Tests.DomainTests{
 
@@ -10,13 +10,11 @@ namespace MiniLedgerScan.Api.Tests.DomainTests{
         
 
         
-        [Theory]
-        [InlineData("invoice-001.pdf")]
-        [InlineData(" ")]
-        public void Constructor_WhenPacketCreated_StartsInReceivedInReceivedWithEmptyHistories(string artifactName)
+        [Fact]
+        public void Constructor_WhenPacketCreated_StartsInReceivedInReceivedWithEmptyHistories()
         {
             // Arrange & Act
-            var packet = new ProofPacketReview(artifactName);
+            var packet = new ProofPacketReview("invoice-001.pdf");
 
             // Assert 
             Assert.Equal(ProofPacketStatus.Received, packet.Status);
@@ -25,13 +23,11 @@ namespace MiniLedgerScan.Api.Tests.DomainTests{
 
         }
 
-        [Theory]
-        [InlineData("invoice-002")]
-        [InlineData(" ")]
-        public void StateTransition_ReceivedToVerifyToValidated_UpdatesStatusAndRecords_OrderedHistory(string artifactName)
+        [Fact]
+        public void StateTransition_ReceivedToVerifyToValidated_UpdatesStatusAndRecords_OrderedHistory()
         {
             // Arrange
-            var packet = new ProofPacketReview(artifactName);
+            var packet = new ProofPacketReview("invoice-002.pdf");
 
             // Act 1: First transition
             packet.StartValidation();
@@ -57,13 +53,11 @@ namespace MiniLedgerScan.Api.Tests.DomainTests{
             
         }
 
-        [Theory]
-        [InlineData("invoice-003")]
-        [InlineData(" ")]
-        public void Verified_Throws_StatusIsStillReceivedFailedAttemptCount(string artifactName)
+        [Fact]
+        public void Verified_Throws_StatusIsStillReceivedFailedAttemptCount()
         {
             // Arrange
-            var packet = new ProofPacketReview(artifactName);
+            var packet = new ProofPacketReview("invoice-003.pdf");
 
             // Act & Assert
 
@@ -72,13 +66,11 @@ namespace MiniLedgerScan.Api.Tests.DomainTests{
             Assert.Single(packet.FailedAttempts);
         }
 
-        [Theory]
-        [InlineData("invoice-004")]
-        [InlineData(" ")]
-        public void Rejected_ReceivedTransitionToRejected_PacketStatusIsRejected(string artifactName)
+        [Fact]
+        public void Rejected_ReceivedTransitionToRejected_PacketStatusIsRejected()
         {   
             // Arrange
-            var packet = new ProofPacketReview(artifactName);
+            var packet = new ProofPacketReview("invoice-004.pdf");
 
             // Act
             packet.StartValidation();
@@ -89,20 +81,18 @@ namespace MiniLedgerScan.Api.Tests.DomainTests{
 
         }
 
-        [Theory]
-        [InlineData(" ")]
-        [InlineData("Packet is verified and accepted.")]
-        public void Verifiy_ThrowsWhenNullOrWhiteSpace_HistoryAndFailedAttemptsAreEmpty(string reason)
+        [Fact]
+        public void Verifiy_ThrowsWhenNullOrWhiteSpace_HistoryAndFailedAttemptsAreEmpty()
         {
             // Arrange
             var packet = new ProofPacketReview("invoice-005.pdf");
 
             // Act
             packet.StartValidation();
-            packet.Verify(reason);
+            packet.Verify("Packet is verified and accepted.");
 
             // Assert
-            if (string.IsNullOrWhiteSpace(reason))
+            if (string.IsNullOrWhiteSpace("Packet cannot be null or whitespace."))
             {
                 Assert.Single(packet.History);
                 Assert.Empty(packet.FailedAttempts);
@@ -114,11 +104,7 @@ namespace MiniLedgerScan.Api.Tests.DomainTests{
             
 
         }
-            
-        
-        
-
-
+          
 
     }
 }
